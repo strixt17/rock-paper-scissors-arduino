@@ -35,28 +35,46 @@ void setup()
 
 void loop()
 {
+
+  lcd.setCursor(0, 0);
+  lcd.print("Rock Paper Scissors");
+  lcd.setCursor(0, 1);
+  lcd.print("Choose Mode: ");
+  if (changemode == HIGH) {
+  	mode = mode + 1;
+    delay(500);
+    Serial.println("mode = " + String(mode));
+    lcd.print(mode);
+  }
   changeitem = digitalRead(buttonPin1);
   changemode = digitalRead(buttonPin2);
   changeplayer = digitalRead(buttonPin3);
   if (changeitem == HIGH) {
   	item = item + 1;
-    delay(200);
+    if (item == 4) {
+    	item = 1;
+    }
+    delay(500);
     Serial.println("item = " + String(item));
   }
-  if (changemode == HIGH) {
-  	mode = mode + 1;
-    delay(200);
-    Serial.println("mode = " + String(mode));
-  }
+  
   if (changeplayer == HIGH) {
   	player = player + 1;
-    delay(200);
+    delay(500);
     Serial.println("player = " + String(player));
   }
-  if (changemode == 1) {
-    if (changeitem == 1) {
+  if (mode == 1) {
+    if (item == 1) {
     	lcd.setCursor(0, 0);
       	lcd.print("8<");
+    }
+    if (item == 2) {
+    	lcd.setCursor(0, 0);
+      	lcd.print("O ");
+    }
+    if (item == 3) {
+    	lcd.setCursor(0, 0);
+      	lcd.print("P ");
     }
   }
 }
