@@ -44,14 +44,21 @@ void loop()
   if (changemode == HIGH) {
   	mode = mode + 1;
     delay(500);
-    Serial.println("mode = " + String(mode));
+    if (mode = 3) {
+    	mode = 1;
+    }
     if (mode = 1) {
     	modetxt = "1v1";
     }
+    /*if (mode = 2) {
+    	modetxt = "AI";
+    }*/
+    Serial.println("mode = " + String(mode));    
     lcd.setCursor(0, 0);
   	lcd.print("Rock Paper Scissors");
   	lcd.setCursor(0, 1);
   	lcd.print("Mode: " + modetxt);
+    
   }
   if (changeplayer == HIGH) {
   	player = player + 1;
@@ -70,7 +77,7 @@ void loop()
     delay(500);
     Serial.println("item = " + String(item));
   	}
-    lcd.clear();
+    
     if (item == 1) {
     	lcd.setCursor(0, 0);
       	lcd.print("8<");
@@ -105,6 +112,25 @@ void loop()
     if (item2 == 3) {
     	lcd.setCursor(14, 0);
       	lcd.print("P ");
+    }
+    
+  }
+  if (mode == 1 && player == 3) {
+  	lcd.clear();
+    if (item2 == item) {
+    	lcd.print("tie game");
+    }
+    if (item2 == 1 && item == 2) {
+    	lcd.print("player 1 wins");
+    }
+    if (item2 == 2 && item == 1) {
+    	lcd.print("player 2 wins");
+    }
+    if (item2 == 2 && item == 3) {
+    	lcd.print("player 1 wins");
+    }
+    if (item2 == 3 && item == 2){
+    	lcd.print("player 2 wins");
     }
   }
 }
