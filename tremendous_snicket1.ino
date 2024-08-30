@@ -41,6 +41,10 @@ void loop()
   changeitem = digitalRead(buttonPin1);
   changemode = digitalRead(buttonPin2);
   changeplayer = digitalRead(buttonPin3);
+  lcd.print(String(changemode));
+  //delay(1000);
+  lcd.print(String(changeplayer));
+  delay(1000);
   if (changemode == HIGH) {
   	mode = mode + 1;
     delay(500);
@@ -57,15 +61,15 @@ void loop()
     	modetxt = "AI";
     }
     Serial.println("mode = " + String(mode));    
-    lcd.setCursor(0, 0);
+    /*lcd.setCursor(0, 0);
   	lcd.print("Rock Paper Scissors");
   	lcd.setCursor(0, 1);
-  	lcd.print("Mode: " + modetxt);
+  	lcd.print("Mode: " + modetxt);*/
     
   }
   if (changeplayer == HIGH) {
   	player = player + 1;
-    if (player  == 3){
+    if (player  == 4){
     	player = 1;
     }
     delay(500);
@@ -80,18 +84,20 @@ void loop()
     delay(500);
     Serial.println("item = " + String(item));
   	}
-    
+    if (item > 0) {
+      lcd.clear();
     if (item == 1) {
-    	lcd.setCursor(0, 0);
+      lcd.setCursor(0, 1);
       	lcd.print("8<");
     }
     if (item == 2) {
-    	lcd.setCursor(0, 0);
+    	lcd.setCursor(0, 1);
       	lcd.print("O ");
     }
     if (item == 3) {
-    	lcd.setCursor(0, 0);
+    	lcd.setCursor(0, 1);
       	lcd.print("P ");
+    }
     }
   }
   if (mode == 1 && player == 2){
@@ -105,21 +111,20 @@ void loop()
   	}
     
     if (item2 == 1) {
-    	lcd.setCursor(14, 0);
+    	lcd.setCursor(14, 1);
       	lcd.print(">8");
     }
     if (item2 == 2) {
-    	lcd.setCursor(14, 0);
+    	lcd.setCursor(14, 1);
       	lcd.print("O ");
     }
     if (item2 == 3) {
-    	lcd.setCursor(14, 0);
+    	lcd.setCursor(14, 1);
       	lcd.print("P ");
     }
     
   }
   if (mode == 1 && player == 3) {
-  	lcd.clear();
     if (item2 == item) {
       lcd.setCursor(0,1);
       lcd.print("tie game"); 
