@@ -20,8 +20,9 @@ int buttonpressed3 = 0;
 int item = 0;
 int mode = 0;
 int player = 0;
+int item2 = 0;
 
-char modetxt;
+String modetxt;
 
 void setup()
 {
@@ -44,13 +45,19 @@ void loop()
   	mode = mode + 1;
     delay(500);
     Serial.println("mode = " + String(mode));
+    if (mode = 1) {
+    	modetxt = "1v1";
+    }
     lcd.setCursor(0, 0);
   	lcd.print("Rock Paper Scissors");
   	lcd.setCursor(0, 1);
-  	lcd.print("Mode: " );
+  	lcd.print("Mode: " + modetxt);
   }
   if (changeplayer == HIGH) {
   	player = player + 1;
+    if (player  == 3){
+    	player = 1;
+    }
     delay(500);
     Serial.println("player = " + String(player));
   }
@@ -77,5 +84,27 @@ void loop()
       	lcd.print("P ");
     }
   }
-  
+  if (mode == 1 && player == 2){
+  	if (changeitem == HIGH) {
+  	item2 = item2 + 1;
+    if (item2 == 4) {
+    	item2 = 1;
+    }
+    delay(500);
+    Serial.println("item2 = " + String(item));
+  	}
+    
+    if (item2 == 1) {
+    	lcd.setCursor(14, 0);
+      	lcd.print(">8");
+    }
+    if (item2 == 2) {
+    	lcd.setCursor(14, 0);
+      	lcd.print("O ");
+    }
+    if (item2 == 3) {
+    	lcd.setCursor(14, 0);
+      	lcd.print("P ");
+    }
+  }
 }
