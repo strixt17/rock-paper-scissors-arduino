@@ -47,7 +47,7 @@ void loop()
     if (mode = 3) {
     	mode = 0;
     }
-    /*if (mode = 0) {
+    if (mode = 0) {
     	modetxt = "    ";
     }
     if (mode = 1) {
@@ -55,7 +55,7 @@ void loop()
     }
     if (mode = 2) {
     	modetxt = "AI";
-    }*/
+    }
     Serial.println("mode = " + String(mode));    
     lcd.setCursor(0, 0);
   	lcd.print("Rock Paper Scissors");
@@ -122,23 +122,48 @@ void loop()
   	lcd.clear();
     if (item2 == item) {
       lcd.setCursor(0,1);
-      lcd.print("tie game");  
+      lcd.print("tie game"); 
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
     }
     if (item2 == 1 && item == 2) {
-        lcd.setCursor(0,1);
-    	lcd.print("player 1 wins");
+      lcd.setCursor(0,1);
+      lcd.print("player 1 wins");
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
     }
     if (item2 == 2 && item == 1) {
       lcd.setCursor(0,1);
-    	lcd.print("player 2 wins");
+      lcd.print("player 2 wins");
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
     }
     if (item2 == 2 && item == 3) {
       lcd.setCursor(0,1);
-    	lcd.print("player 1 wins");
+      lcd.print("player 1 wins");
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
     }
     if (item2 == 3 && item == 2){
       lcd.setCursor(0,1);
-    	lcd.print("player 2 wins");
+      lcd.print("player 2 wins");
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
     }
   }
 }
