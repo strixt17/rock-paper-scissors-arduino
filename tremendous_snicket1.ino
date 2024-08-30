@@ -45,12 +45,15 @@ void loop()
   	mode = mode + 1;
     delay(500);
     if (mode = 3) {
-    	mode = 1;
+    	mode = 0;
+    }
+    /*if (mode = 0) {
+    	modetxt = "    ";
     }
     if (mode = 1) {
     	modetxt = "1v1";
     }
-    /*if (mode = 2) {
+    if (mode = 2) {
     	modetxt = "AI";
     }*/
     Serial.println("mode = " + String(mode));    
@@ -118,18 +121,23 @@ void loop()
   if (mode == 1 && player == 3) {
   	lcd.clear();
     if (item2 == item) {
-    	lcd.print("tie game");
+      lcd.setCursor(0,1);
+      lcd.print("tie game");  
     }
     if (item2 == 1 && item == 2) {
+        lcd.setCursor(0,1);
     	lcd.print("player 1 wins");
     }
     if (item2 == 2 && item == 1) {
+      lcd.setCursor(0,1);
     	lcd.print("player 2 wins");
     }
     if (item2 == 2 && item == 3) {
+      lcd.setCursor(0,1);
     	lcd.print("player 1 wins");
     }
     if (item2 == 3 && item == 2){
+      lcd.setCursor(0,1);
     	lcd.print("player 2 wins");
     }
   }
