@@ -36,6 +36,8 @@ void setup()
   pinMode(buttonPin1, INPUT);
   pinMode(buttonPin2, INPUT);
   pinMode(buttonPin3, INPUT);
+  
+  randomSeed(analogRead(0));
 }
 
 void loop()
@@ -43,10 +45,6 @@ void loop()
   changeitem = digitalRead(buttonPin1);
   changemode = digitalRead(buttonPin2);
   changeplayer = digitalRead(buttonPin3);
-  lcd.print(String(changemode));
-  //delay(1000);
-  lcd.print(String(changeplayer));
-  delay(1000);
   if (changemode == HIGH) {
   	mode = mode + 1;
     delay(500);
@@ -63,10 +61,10 @@ void loop()
     	modetxt = "AI";
     }
     Serial.println("mode = " + String(mode));    
-    /*lcd.setCursor(0, 0);
+    lcd.setCursor(0, 0);
   	lcd.print("Rock Paper Scissors");
   	lcd.setCursor(0, 1);
-  	lcd.print("Mode: " + modetxt);*/
+  	lcd.print("Mode: " + modetxt);
     
   }
   if (changeplayer == HIGH) {
@@ -137,7 +135,7 @@ void loop()
       item2 = 0;
     }
     if (item2 == 1 && item == 2) {
-      lcd.setCursor(0,1);
+      lcd.setCursor(5,0);
       lcd.print("player 1 wins");
       delay(5000);
       mode = 0;
@@ -146,7 +144,7 @@ void loop()
       item2 = 0;
     }
     if (item2 == 2 && item == 1) {
-      lcd.setCursor(0,1);
+      lcd.setCursor(5,0);
       lcd.print("player 2 wins");
       delay(5000);
       mode = 0;
@@ -155,7 +153,7 @@ void loop()
       item2 = 0;
     }
     if (item2 == 2 && item == 3) {
-      lcd.setCursor(0,1);
+      lcd.setCursor(5,0);
       lcd.print("player 1 wins");
       delay(5000);
       mode = 0;
@@ -164,7 +162,7 @@ void loop()
       item2 = 0;
     }
     if (item2 == 3 && item == 2){
-      lcd.setCursor(0,1);
+      lcd.setCursor(5,0);
       lcd.print("player 2 wins");
       delay(5000);
       mode = 0;
@@ -174,7 +172,8 @@ void loop()
     }
   }
   if (mode == 2 && player == 1) {
-  	if (changeitem == HIGH) {
+  	
+    if (changeitem == HIGH) {
   	item = item + 1;
     if (item == 4) {
     	item = 1;
@@ -184,6 +183,8 @@ void loop()
   	}
     if (item > 0) {
       lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("You           AI");
     if (item == 1) {
       lcd.setCursor(0, 1);
       	lcd.print("8<");
@@ -199,18 +200,66 @@ void loop()
     }
   }
   if (mode == 2 && player == 2) {
-  	item2 = random(1, 3);
+  	item2 = random(1, 4);
     if (item2 == 1) {
-      lcd.setCursor(0, 1);
-      	lcd.print("8<");
+      lcd.setCursor(14, 1);
+      	lcd.print(">8");
     }
     if (item2 == 2) {
-    	lcd.setCursor(0, 1);
+    	lcd.setCursor(14, 1);
       	lcd.print("O ");
     }
     if (item2 == 3) {
-    	lcd.setCursor(0, 1);
+    	lcd.setCursor(14, 1);
       	lcd.print("P ");
     }
+    player = 3;
   }
+  if (mode == 2 && player == 3) {
+    if (item2 == item) {
+      lcd.setCursor(5,0);
+      lcd.print("tie game"); 
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
+    }
+    if (item2 == 1 && item == 2) {
+      lcd.setCursor(5,0);
+      lcd.print("You Won");
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
+    }
+    if (item2 == 2 && item == 1) {
+      lcd.setCursor(5,0);
+      lcd.print("AI wins");
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
+    }
+    if (item2 == 2 && item == 3) {
+      lcd.setCursor(5,0);
+      lcd.print("You won");
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
+    }
+    if (item2 == 3 && item == 2){
+      lcd.setCursor(5,0);
+      lcd.print("AI wins");
+      delay(5000);
+      mode = 0;
+      item = 0;
+      player = 0;
+      item2 = 0;
+    }
+}
 }
