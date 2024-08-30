@@ -24,6 +24,8 @@ int item2 = 0;
 
 String modetxt;
 
+long randNumber;
+
 void setup()
 {
   Serial.begin(9600);
@@ -52,7 +54,7 @@ void loop()
     	mode = 0;
     }
     if (mode = 0) {
-    	modetxt = "    ";
+    	modetxt = "   ";
     }
     if (mode = 1) {
     	modetxt = "1v1";
@@ -169,6 +171,46 @@ void loop()
       item = 0;
       player = 0;
       item2 = 0;
+    }
+  }
+  if (mode == 2 && player == 1) {
+  	if (changeitem == HIGH) {
+  	item = item + 1;
+    if (item == 4) {
+    	item = 1;
+    }
+    delay(500);
+    Serial.println("item = " + String(item));
+  	}
+    if (item > 0) {
+      lcd.clear();
+    if (item == 1) {
+      lcd.setCursor(0, 1);
+      	lcd.print("8<");
+    }
+    if (item == 2) {
+    	lcd.setCursor(0, 1);
+      	lcd.print("O ");
+    }
+    if (item == 3) {
+    	lcd.setCursor(0, 1);
+      	lcd.print("P ");
+    }
+    }
+  }
+  if (mode == 2 && player == 2) {
+  	item2 = random(1, 3);
+    if (item2 == 1) {
+      lcd.setCursor(0, 1);
+      	lcd.print("8<");
+    }
+    if (item2 == 2) {
+    	lcd.setCursor(0, 1);
+      	lcd.print("O ");
+    }
+    if (item2 == 3) {
+    	lcd.setCursor(0, 1);
+      	lcd.print("P ");
     }
   }
 }
