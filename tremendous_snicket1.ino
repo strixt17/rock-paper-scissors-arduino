@@ -39,7 +39,7 @@ void setup()
   
   randomSeed(analogRead(0));
 }
-   
+
 void loop()
 {
   changeitem = digitalRead(buttonPin1);
@@ -48,16 +48,16 @@ void loop()
   if (changemode == HIGH) {
   	mode = mode + 1;
     delay(500);
-    if (mode = 3) {
+    if (mode == 3) {
     	mode = 0;
     }
-    if (mode = 0) {
+    if (mode == 0) {
     	modetxt = "   ";
     }
-    if (mode = 1) {
+    if (mode == 1) {
     	modetxt = "1v1";
     }
-    if (mode = 2) {
+    if (mode == 2) {
     	modetxt = "AI";
     }
     Serial.println("mode = " + String(mode));    
@@ -67,6 +67,7 @@ void loop()
   	lcd.print("Mode: " + modetxt);
     
   }
+  
   if (changeplayer == HIGH) {
   	player = player + 1;
     if (player  == 4){
@@ -126,7 +127,7 @@ void loop()
   }
   if (mode == 1 && player == 3) {
     if (item2 == item) {
-      lcd.setCursor(0,1);
+      lcd.setCursor(5,0);
       lcd.print("tie game"); 
       delay(5000);
       mode = 0;
